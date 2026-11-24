@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MJG Stone</title>
+<meta name="description" content="MJG Stone is a Gold Coast manufacturer and supplier of marble, granite, porcelain and engineered quartz benchtops for kitchens, bathrooms and commercial projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap">
+<style>
+/* Layout concept: a dark charcoal showroom lit by thin gold light lines, glass panels floating over a faint engineering grid. */
+:root{
+  --ink:#0a0a0b;          /* page ground, from the site's black header */
+  --ink-2:#121214;        /* raised panels */
+  --ink-3:#1b1b1e;        /* cards and inputs */
+  --line:rgba(234,195,131,.18);
+  --fg:#f3efe7;
+  --muted:#a39d92;
+  --gold:#eac383;         /* the site's existing accent */
+  --gold-deep:#b98a45;
+  --gold-glow:rgba(234,195,131,.28);
+  --display:"Montserrat",Arial,Helvetica,sans-serif;
+  --body:"Open Sans",Arial,Helvetica,sans-serif;
+  --gutter-l:max(20px,env(safe-area-inset-left,0px));
+  --gutter-r:max(20px,env(safe-area-inset-right,0px));
+  --max:1240px;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.1;margin:0;text-wrap:balance}
+p{margin:0}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* ambient grid + cursor light */
+.grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:72px 72px;opacity:.28;
+  mask-image:radial-gradient(ellipse 70% 60% at 50% 20%,#000 0%,transparent 100%);
+  -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 20%,#000 0%,transparent 100%)}
+.cursor-light{position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(500px circle at var(--mx,50%) var(--my,30%),rgba(234,195,131,.08),transparent 60%);transition:background .15s linear}
+
+.wrap{max-width:var(--max);margin-inline:auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+section{position:relative;z-index:1}
+
+/* ---------- Nav ---------- */
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);
+  background:rgba(10,10,11,.6);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:14px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{width:58px;height:58px;object-fit:contain;filter:drop-shadow(0 0 14px var(--gold-glow))}
+.brand .word{font-family:var(--display);font-weight:700;letter-spacing:.32em;font-size:.8rem;text-transform:uppercase}
+.brand .word small{display:block;font-weight:400;letter-spacing:.22em;font-size:.58rem;color:var(--gold);margin-top:2px}
+.menu{display:flex;gap:34px;list-style:none;margin:0;padding:0}
+.menu a{font-family:var(--display);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);position:relative;padding-block:6px;white-space:nowrap;transition:color .25s}
+.menu a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--gold);transition:right .3s cubic-bezier(.2,.8,.2,1)}
+.menu a:hover{color:var(--fg)}.menu a:hover::after{right:0}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  padding:14px 26px;border:1px solid var(--gold);color:var(--gold);position:relative;overflow:hidden;isolation:isolate;transition:color .3s;white-space:nowrap}
+.btn::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,var(--gold-deep),var(--gold));transform:translateX(-101%);transition:transform .35s cubic-bezier(.2,.8,.2,1);z-index:-1}
+.btn:hover{color:var(--ink)}.btn:hover::before{transform:translateX(0)}
+.btn.solid{background:linear-gradient(100deg,var(--gold-deep),var(--gold));color:var(--ink);border-color:transparent;box-shadow:0 0 32px var(--gold-glow)}
+.btn.solid::before{background:#fff;opacity:.15}
+.burger{display:none;background:none;border:1px solid var(--line);color:var(--fg);width:44px;height:44px;cursor:pointer;font-size:0}
+.burger span{display:block;width:20px;height:1px;background:var(--gold);margin:4px auto}
+
+/* ---------- Hero ---------- */
+.hero{min-height:88vh;display:grid;align-items:end;overflow:hidden;isolation:isolate}
+.hero-media{position:absolute;inset:0;z-index:-2}
+.hero-media img{width:100%;height:100%;object-fit:cover;opacity:.55;transform:scale(1.06);animation:drift 24s ease-in-out infinite alternate}
+@keyframes drift{to{transform:scale(1.14) translate(-1.5%,-1%)}}
+.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,11,.2) 0%,rgba(10,10,11,.55) 55%,var(--ink) 100%)}
+.scanline{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.7;z-index:-1;animation:scan 9s linear infinite}
+@keyframes scan{from{top:-2px}to{top:100%}}
+.hero .wrap{padding-block:120px 80px;display:grid;gap:36px}
+.eyebrow{font-family:var(--display);font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:16px}
+.eyebrow::before{content:"";width:46px;height:1px;background:var(--gold)}
+.hero h1{font-size:clamp(2.3rem,6vw,5.4rem);font-weight:300;letter-spacing:-.01em;max-width:16ch}
+.hero h1 strong{font-weight:700;background:linear-gradient(90deg,#fff 0%,var(--gold) 60%,var(--gold-deep) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:52ch;color:var(--muted);font-size:1.05rem}
+.hero-actions{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.hero-side{position:absolute;right:var(--gutter-r);bottom:40px;display:none;flex-direction:column;gap:14px;align-items:flex-end;font-family:var(--display);font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+.hero-side b{color:var(--gold);font-weight:600}
+@media(min-width:960px){.hero-side{display:flex}}
+
+/* ---------- Stats bar ---------- */
+.stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(18,18,20,.7);backdrop-filter:blur(10px)}
+.stats .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0}
+.stat{padding-block:30px;padding-inline:24px;border-left:1px solid var(--line);display:grid;gap:4px}
+.stat:first-child{border-left:0;padding-left:0}
+.stat b{font-family:var(--display);font-size:2.1rem;font-weight:300;color:var(--fg);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.stat b em{font-style:normal;color:var(--gold)}
+.stat span{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);font-family:var(--display)}
+
+/* ---------- Sections ---------- */
+.sec{padding-block:120px}
+.sec-head{display:grid;gap:18px;max-width:720px;margin-bottom:64px}
+.sec-head h2{font-size:clamp(1.9rem,3.6vw,3rem);font-weight:300;letter-spacing:-.01em}
+.sec-head h2 strong{font-weight:700;color:var(--gold)}
+.sec-head p{color:var(--muted);max-width:60ch}
+
+/* about */
+.about .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center}
+.about-media{position:relative;aspect-ratio:4/5;max-width:100%}
+.about-media img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.05)}
+.about-media::before{content:"";position:absolute;inset:-18px 18px 18px -18px;border:1px solid var(--gold);opacity:.6;pointer-events:none}
+.about-media .tag{position:absolute;right:-14px;bottom:36px;background:var(--ink-2);border:1px solid var(--line);padding:18px 22px;font-family:var(--display);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.about-copy{display:grid;gap:22px}
+.about-copy p{color:var(--muted)}
+.about-copy p.lead{color:var(--fg);font-size:1.12rem;font-weight:300}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;list-style:none;padding:0;margin:8px 0 0}
+.checks li{display:flex;align-items:center;gap:12px;font-size:.92rem}
+.checks li::before{content:"";width:8px;height:8px;background:var(--gold);transform:rotate(45deg);box-shadow:0 0 10px var(--gold-glow);flex:none}
+
+/* materials */
+.materials{background:linear-gradient(180deg,var(--ink) 0%,var(--ink-2) 50%,var(--ink) 100%)}
+.mat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;background:var(--line);border:1px solid var(--line)}
+.mat{background:var(--ink);padding:36px 32px;display:grid;gap:16px;position:relative;overflow:hidden;min-height:300px;transition:background .35s}
+.mat .swatch{height:120px;border:1px solid rgba(255,255,255,.08);position:relative;overflow:hidden;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.mat:hover{background:var(--ink-3)}.mat:hover .swatch{transform:translateY(-4px)}
+.mat .swatch::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.14) 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s}
+.mat:hover .swatch::after{transform:translateX(120%)}
+.mat h3{font-size:1.05rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.mat p{font-size:.9rem;color:var(--muted)}
+.mat .idx{position:absolute;top:18px;right:22px;font-family:var(--display);font-size:.62rem;letter-spacing:.26em;color:var(--gold);opacity:.8}
+.s-marble{background:#e9e6e1;background-image:
+  radial-gradient(ellipse 60% 20% at 30% 30%,rgba(120,120,130,.35),transparent 70%),
+  radial-gradient(ellipse 80% 14% at 70% 65%,rgba(90,90,100,.4),transparent 70%),
+  linear-gradient(165deg,transparent 48%,rgba(80,80,90,.45) 49.5%,transparent 51%),
+  linear-gradient(20deg,transparent 60%,rgba(100,100,110,.3) 61%,transparent 63%)}
+.s-granite{background:#2c2c2f;background-image:radial-gradient(circle at 20% 30%,#5a5651 1.2px,transparent 1.5px),radial-gradient(circle at 70% 60%,#8a847a 1px,transparent 1.4px),radial-gradient(circle at 45% 80%,#1a1a1c 1.6px,transparent 2px),radial-gradient(circle at 85% 20%,#c9c2b4 .8px,transparent 1.2px);background-size:14px 14px,19px 19px,23px 23px,31px 31px}
+.s-limestone{background:#d6ccb8;background-image:radial-gradient(circle at 30% 40%,rgba(255,255,255,.35) 0,transparent 40%),radial-gradient(circle at 75% 70%,rgba(140,120,90,.25) 0,transparent 45%),repeating-linear-gradient(0deg,transparent 0 11px,rgba(120,100,70,.08) 11px 12px)}
+.s-quartzite{background:#cfd6da;background-image:linear-gradient(135deg,rgba(255,255,255,.5) 0%,transparent 40%),linear-gradient(160deg,transparent 55%,rgba(90,110,125,.45) 56%,transparent 58%),linear-gradient(150deg,transparent 30%,rgba(110,125,135,.35) 31%,transparent 33%)}
+.s-porcelain{background:#1d1d1f;background-image:linear-gradient(170deg,transparent 40%,rgba(234,195,131,.35) 41%,transparent 42.5%),linear-gradient(10deg,transparent 65%,rgba(234,195,131,.2) 66%,transparent 67%),radial-gradient(ellipse at 20% 20%,rgba(255,255,255,.08),transparent 60%)}
+.s-quartz{background:#f1f1ef;background-image:radial-gradient(circle at 25% 35%,rgba(0,0,0,.08) .8px,transparent 1.2px),radial-gradient(circle at 60% 70%,rgba(0,0,0,.12) .6px,transparent 1px),radial-gradient(circle at 80% 25%,rgba(0,0,0,.06) 1px,transparent 1.4px);background-size:9px 9px,13px 13px,17px 17px}
+
+/* marquee */
+.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:18px;position:relative;z-index:1}
+.marquee .track{display:flex;gap:64px;width:max-content;animation:mq 40s linear infinite;font-family:var(--display);font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.marquee .track span::before{content:"◆";color:var(--gold);margin-right:64px;font-size:.5rem;vertical-align:middle}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* spaces */
+.spaces .wrap{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.space{position:relative;aspect-ratio:4/5;max-width:100%;overflow:hidden;border:1px solid var(--line);isolation:isolate;display:grid;align-items:end}
+.space img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;transition:transform 1.2s cubic-bezier(.2,.8,.2,1),filter .6s;filter:saturate(.7) brightness(.75)}
+.space:hover img{transform:scale(1.06);filter:saturate(.9) brightness(.9)}
+.space::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(10,10,11,.92) 100%);z-index:-1}
+.space .inner{padding:40px;display:grid;gap:14px}
+.space h3{font-size:clamp(1.6rem,2.6vw,2.4rem);font-weight:300;letter-spacing:.12em;text-transform:uppercase}
+.space p{color:var(--muted);max-width:40ch}
+.space .corner{position:absolute;top:22px;left:22px;width:36px;height:36px;border-top:1px solid var(--gold);border-left:1px solid var(--gold)}
+.space .corner.br{top:auto;left:auto;right:22px;bottom:22px;border:0;border-bottom:1px solid var(--gold);border-right:1px solid var(--gold)}
+
+/* sustainability */
+.sustain{background:var(--ink-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sustain .wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:start}
+.sus-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line);border:1px solid var(--line)}
+.sus{background:var(--ink-2);padding:30px 28px;display:grid;gap:10px;transition:background .3s}
+.sus:hover{background:var(--ink-3)}
+.sus .ic{width:40px;height:40px;border:1px solid var(--gold);display:grid;place-items:center;color:var(--gold);margin-bottom:6px}
+.sus .ic svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.sus h3{font-size:.9rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.sus p{font-size:.88rem;color:var(--muted)}
+
+/* process */
+.process ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line);border:1px solid var(--line);counter-reset:step}
+.process li{background:var(--ink);padding:36px 30px;display:grid;gap:12px;counter-increment:step;position:relative}
+.process li::before{content:"0" counter(step);font-family:var(--display);font-size:2.6rem;font-weight:200;color:var(--gold);letter-spacing:-.03em;line-height:1}
+.process li h3{font-size:.92rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.process li p{font-size:.88rem;color:var(--muted)}
+
+/* projects cta */
+.cta{position:relative;isolation:isolate;overflow:hidden;text-align:center}
+.cta img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;opacity:.35;filter:saturate(.6)}
+.cta::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(10,10,11,.3),var(--ink) 100%)}
+.cta .wrap{display:grid;gap:28px;justify-items:center;padding-block:140px}
+.cta h2{font-size:clamp(2rem,5vw,4rem);font-weight:300;max-width:18ch}
+.cta h2 strong{font-weight:700;color:var(--gold)}
+
+/* contact */
+.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+.card{background:var(--ink-2);border:1px solid var(--line);padding:40px;display:grid;gap:24px;position:relative}
+.card::before{content:"";position:absolute;top:-1px;left:-1px;width:60px;height:60px;border-top:1px solid var(--gold);border-left:1px solid var(--gold)}
+.dl{display:grid;grid-template-columns:auto 1fr;gap:12px 28px;margin:0;font-size:.95rem}
+.dl dt{font-family:var(--display);font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);padding-top:5px}
+.dl dd{margin:0;color:var(--fg)}
+.dl dd small{display:block;color:var(--muted);font-size:.85rem}
+.hours{display:grid;gap:6px;font-size:.9rem;color:var(--muted)}
+form{display:grid;gap:16px}
+.field{display:grid;gap:8px}
+.field label{font-family:var(--display);font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+.field input,.field select,.field textarea{width:100%;background:var(--ink-3);border:1px solid var(--line);color:var(--fg);font:inherit;font-size:.95rem;padding:14px 16px;transition:border-color .25s,box-shadow .25s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(234,195,131,.12)}
+.field textarea{min-height:130px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-note{font-size:.82rem;color:var(--muted)}
+.toast{display:none;padding:14px 18px;border:1px solid var(--gold);color:var(--gold);font-size:.9rem}
+.toast.show{display:block}
+
+/* footer */
+footer{position:relative;z-index:1;border-top:1px solid var(--line);background:var(--ink)}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;padding-block:72px 36px}
+.fcol h4{font-family:var(--display);font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.fcol ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:.9rem;color:var(--muted)}
+.fcol a:hover{color:var(--fg)}
+.fcol p{color:var(--muted);font-size:.9rem;max-width:36ch}
+.social{display:flex;gap:12px;margin-top:20px}
+.social a{width:40px;height:40px;border:1px solid var(--line);display:grid;place-items:center;color:var(--muted);transition:border-color .25s,color .25s}
+.social a:hover{border-color:var(--gold);color:var(--gold)}
+.social svg{width:16px;height:16px;fill:currentColor}
+.legal{border-top:1px solid var(--line)}
+.legal .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:22px;font-size:.78rem;color:var(--muted);font-family:var(--display);letter-spacing:.12em;text-transform:uppercase}
+
+/* reveal (visible at rest, lifts in on scroll) */
+.rv{transition:transform .9s cubic-bezier(.2,.8,.2,1),opacity .9s}
+.js .rv:not(.in){transform:translateY(18px);opacity:.001}
+
+/* ---------- Responsive ---------- */
+@media(max-width:1000px){
+  .about .wrap,.sustain .wrap,.contact .wrap{grid-template-columns:1fr;gap:48px}
+  .process ol{grid-template-columns:1fr 1fr}
+  footer .wrap{grid-template-columns:1fr 1fr}
+}
+@media(max-width:1000px){
+  .menu,.nav .btn{display:none}.burger{display:block}
+  .nav.open .menu{display:grid;position:absolute;left:0;right:0;top:100%;background:rgba(10,10,11,.96);padding:24px var(--gutter-r) 32px var(--gutter-l);gap:18px;border-bottom:1px solid var(--line)}
+}
+@media(max-width:760px){
+  .hero{min-height:auto}.hero .wrap{padding-block:90px 60px}
+  .spaces .wrap{grid-template-columns:1fr}
+  .sus-grid,.process ol,.row2,.checks{grid-template-columns:1fr}
+  footer .wrap{grid-template-columns:1fr}
+  .about-media .tag{right:0}
+  .sec{padding-block:80px}
+  .eyebrow{font-size:.6rem;letter-spacing:.22em}.eyebrow::before{width:28px}
+  .stat{border-left:0;padding-inline:0;border-top:1px solid var(--line)}.stat:first-child{border-top:0}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv{transform:none;opacity:1}
+}
+</style>
+</head>
+<body>
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="cursor-light" aria-hidden="true"></div>
+
+<header class="nav" id="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="MJG Stone home">
+      <img src="assets/logo.png" alt="" width="58" height="58">
+      <span class="word">MJG Stone<small>Superior Stone · Gold Coast</small></span>
+    </a>
+    <nav aria-label="Primary">
+      <ul class="menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#materials">Materials</a></li>
+        <li><a href="#spaces">Kitchens &amp; Bathrooms</a></li>
+        <li><a href="#sustainability">Sustainability</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="btn" href="#contact">Request a quote</a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="menu">Menu<span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-media" aria-hidden="true"><img src="assets/slide-1.jpg" alt=""></div>
+  <div class="scanline" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="eyebrow">Complete manufacturer &amp; supplier · Domestic and commercial</p>
+    <h1 id="hero-title">Entrust MJG Stone to create the <strong>perfect centrepiece</strong> to your home.</h1>
+    <p>Marble, granite, wide-format porcelain and the latest engineered quartz, cut and installed on the Gold Coast with unsurpassed service and quality.</p>
+    <div class="hero-actions">
+      <a class="btn solid" href="#contact">Start your project</a>
+      <a class="btn" href="#materials">Explore materials</a>
+    </div>
+  </div>
+  <div class="hero-side" aria-hidden="true">
+    <span>Showroom <b>1 Anne St, Southport</b></span>
+    <span>Silicosis <b>Compliant</b></span>
+    <span>Est. <b>2019</b></span>
+  </div>
+</section>
+
+<section class="stats" aria-label="Key facts">
+  <div class="wrap">
+    <div class="stat"><b><em>Est.</em> 2019</b><span>Gold Coast owned &amp; operated</span></div>
+    <div class="stat"><b>100<em>%</em></b><span>Water recycling in the factory</span></div>
+    <div class="stat"><b>6<em>+</em></b><span>Stone families in stock</span></div>
+    <div class="stat"><b>Solar</b><span>Powered production line</span></div>
+  </div>
+</section>
+
+<section class="sec about" id="about" aria-labelledby="about-title">
+  <div class="wrap">
+    <div class="about-media rv">
+      <img src="assets/frontpage.jpg" alt="A finished MJG Stone kitchen with a pale stone island benchtop">
+      <div class="tag">Owner on every job</div>
+    </div>
+    <div class="about-copy rv">
+      <p class="eyebrow">Leading manufacturer of quality stone products</p>
+      <h2 id="about-title" style="font-size:clamp(1.9rem,3.4vw,2.8rem);font-weight:300">Small to medium projects, with an <strong style="font-weight:700;color:var(--gold)">eye for detail</strong> on every one.</h2>
+      <p class="lead">MJG Stone was founded in 2019 on two things: high quality and high levels of customer service. The owner is involved in every stage of the production line.</p>
+      <p>We offer a vast range of materials, from natural marble and granite to engineered stone and wide-format porcelain. A sophisticated blend of on-trend products in a diverse range of colours gives you infinite possibilities for kitchen benchtops and vanities.</p>
+      <p>Our skilled factory and install team pair high-tech machinery with old-school experience to deliver some of the highest quality work seen in the industry.</p>
+      <ul class="checks" aria-label="What we offer">
+        <li>Kitchen benchtops</li><li>Stone benchtops</li><li>Granite benchtops</li><li>Porcelain benchtops</li>
+        <li>Vanity tops</li><li>Spa surrounds</li><li>Wall cladding</li><li>Commercial fit-outs</li>
+      </ul>
+      <div><a class="btn" href="#contact">More information</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec materials" id="materials" aria-labelledby="mat-title">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">All types of stone benchtops</p>
+      <h2 id="mat-title">Natural, engineered and porcelain. <strong>Every surface</strong>, one factory.</h2>
+      <p>Supplying all types of stone, from marble and granite to limestone, quartzite, porcelain and the latest engineered quartz. State-of-the-art machinery means your stone needs are met at any requirement or budget.</p>
+    </div>
+    <div class="mat-grid">
+      <article class="mat rv"><span class="idx">Natural</span><div class="swatch s-marble"></div><h3>Marble</h3><p>Classic veining and depth of colour. The timeless choice for statement islands and vanities.</p></article>
+      <article class="mat rv"><span class="idx">Natural</span><div class="swatch s-granite"></div><h3>Granite</h3><p>Dense, heat-tolerant and hard-wearing. A proven performer for busy kitchens and outdoor areas.</p></article>
+      <article class="mat rv"><span class="idx">Natural</span><div class="swatch s-limestone"></div><h3>Limestone</h3><p>Soft, warm tones with a honed finish for a calm, natural look across bathrooms and cladding.</p></article>
+      <article class="mat rv"><span class="idx">Natural</span><div class="swatch s-quartzite"></div><h3>Quartzite</h3><p>The look of marble with the strength of granite. Crystalline surfaces that catch the light.</p></article>
+      <article class="mat rv"><span class="idx">Wide format</span><div class="swatch s-porcelain"></div><h3>Porcelain</h3><p>Large-format slabs that are changing the market. Scratch, stain and UV resistant, with seamless runs.</p></article>
+      <article class="mat rv"><span class="idx">Engineered</span><div class="swatch s-quartz"></div><h3>Engineered Quartz</h3><p>The latest on-trend colours and consistent patterns, fabricated to exact specifications.</p></article>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>Marble</span><span>Granite</span><span>Limestone</span><span>Quartzite</span><span>Porcelain</span><span>Engineered Quartz</span><span>Kitchen Benchtops</span><span>Vanity Tops</span><span>Splashbacks</span><span>Wall Cladding</span>
+    <span>Marble</span><span>Granite</span><span>Limestone</span><span>Quartzite</span><span>Porcelain</span><span>Engineered Quartz</span><span>Kitchen Benchtops</span><span>Vanity Tops</span><span>Splashbacks</span><span>Wall Cladding</span>
+  </div>
+</div>
+
+<section class="sec spaces" id="spaces" aria-label="Kitchens and bathrooms">
+  <div class="wrap">
+    <a class="space rv" href="#contact">
+      <img src="assets/slide2.jpg" alt="Black and white kitchen with stone benchtop and pendant lights">
+      <span class="corner" aria-hidden="true"></span><span class="corner br" aria-hidden="true"></span>
+      <div class="inner">
+        <p class="eyebrow">Kitchens</p>
+        <h3>Custom benchtops to any specification</h3>
+        <p>Engineered and natural stone tops offer a vast array of benefits over every other form of benchtop.</p>
+        <span class="btn">View kitchens</span>
+      </div>
+    </a>
+    <a class="space rv" href="#contact">
+      <img src="assets/slide3.jpg" alt="Bathroom vanity with a dark marble top and undermount basin">
+      <span class="corner" aria-hidden="true"></span><span class="corner br" aria-hidden="true"></span>
+      <div class="inner">
+        <p class="eyebrow">Bathrooms</p>
+        <h3>From vanity tops to complete renovations</h3>
+        <p>Specialising in vanity tops, spa surrounds and wall cladding. We can handle it all.</p>
+        <span class="btn">View bathrooms</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="sec sustain" id="sustainability" aria-labelledby="sus-title">
+  <div class="wrap">
+    <div class="sec-head rv" style="margin-bottom:0">
+      <p class="eyebrow">Sustainable by design</p>
+      <h2 id="sus-title">Protecting the planet and the <strong>resources we have left.</strong></h2>
+      <p>MJG Stone is committed to finding sustainable ways to operate. From waste reduction to water conservation, we demonstrate this in our company ethos in an ongoing effort to operate and grow sustainably. We care about our team, our customers and our environment.</p>
+    </div>
+    <div class="sus-grid rv">
+      <div class="sus"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/><path d="M9 14a3 3 0 0 0 3 3"/></svg></div><h3>Complete water recycling</h3><p>All works are carried out wet to minimise dust, and every litre is captured and reused.</p></div>
+      <div class="sus"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 12h16M12 4v16"/><circle cx="12" cy="12" r="8"/></svg></div><h3>Silicosis compliant</h3><p>Our operations meet Silicosis compliance standards to protect the team on every cut.</p></div>
+      <div class="sus"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg></div><h3>Solar powered</h3><p>Large solar power systems reduce the carbon footprint of the factory floor.</p></div>
+      <div class="sus"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 12c3-6 9-8 18-8-1 9-4 15-12 15a7 7 0 0 1-6-7z"/><path d="M3 21c4-5 8-8 12-10"/></svg></div><h3>Emission free factory</h3><p>Environmentally friendly production, free of atmospheric emissions.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec process" aria-labelledby="proc-title">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Concept to execution</p>
+      <h2 id="proc-title">A friendly, passionate team to <strong>guide you through.</strong></h2>
+    </div>
+    <ol class="rv">
+      <li><h3>Consult</h3><p>Visit the Southport showroom or send your plans. We talk through material, edge profile and budget.</p></li>
+      <li><h3>Template</h3><p>We measure on site with digital templating for an exact fit to your cabinetry.</p></li>
+      <li><h3>Fabricate</h3><p>Slabs are cut and polished wet on high-tech machinery, checked by the owner before leaving the factory.</p></li>
+      <li><h3>Install</h3><p>Professional fitting and installation at a price point everyone can afford.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec cta" aria-labelledby="cta-title">
+  <img src="assets/slide-2.jpg" alt="" aria-hidden="true">
+  <div class="wrap">
+    <p class="eyebrow" style="justify-content:center">Recent projects</p>
+    <h2 id="cta-title">A modern masterpiece for you to <strong>enjoy for years to come.</strong></h2>
+    <a class="btn solid" href="https://www.mjgstone.com.au/gallery/projects/">View more projects</a>
+  </div>
+</section>
+
+<section class="sec contact" id="contact" aria-labelledby="contact-title">
+  <div class="wrap">
+    <div class="rv" style="display:grid;gap:32px;align-content:start">
+      <div class="sec-head" style="margin-bottom:0">
+        <p class="eyebrow">QLD office &amp; showroom</p>
+        <h2 id="contact-title">Visit us in <strong>Southport.</strong></h2>
+        <p>Bring your plans, pick a slab and leave with a quote. Or send us the details and we will come back to you.</p>
+      </div>
+      <div class="card">
+        <dl class="dl">
+          <dt>Address</dt><dd>1 Anne St<small>Southport QLD 4215 (Cnr Anne St)</small></dd>
+          <dt>Phone</dt><dd><a href="tel:+61755031288">+61 7 5503 1288</a></dd>
+          <dt>Fax</dt><dd>+61 7 5503 1366</dd>
+          <dt>Email</dt><dd><a href="mailto:sales@mjgstone.com.au">sales@mjgstone.com.au</a></dd>
+        </dl>
+      </div>
+    </div>
+    <div class="card rv">
+      <form id="quote-form" novalidate>
+        <div class="row2">
+          <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
+        </div>
+        <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="row2">
+          <div class="field"><label for="f-space">Project</label>
+            <select id="f-space" name="project"><option>Kitchen benchtop</option><option>Bathroom vanity</option><option>Splashback</option><option>Wall cladding</option><option>Commercial</option><option>Other</option></select></div>
+          <div class="field"><label for="f-material">Material</label>
+            <select id="f-material" name="material"><option>Not sure yet</option><option>Marble</option><option>Granite</option><option>Limestone</option><option>Quartzite</option><option>Porcelain</option><option>Engineered quartz</option></select></div>
+        </div>
+        <div class="field"><label for="f-msg">Tell us about the project</label><textarea id="f-msg" name="message" placeholder="Approximate dimensions, timing, anything else we should know."></textarea></div>
+        <p class="form-note">We reply within one business day. Your details are only used to prepare your quote.</p>
+        <button class="btn solid" type="submit" style="justify-self:start;cursor:pointer;font:inherit;font-family:var(--display)">Request a quote</button>
+        <div class="toast" id="toast" role="status"></div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fcol">
+      <a class="brand" href="#top"><img src="assets/logo.png" alt="MJG Stone" width="58" height="58"><span class="word">MJG Stone<small>Superior Stone · Gold Coast</small></span></a>
+      <p style="margin-top:20px">Complete manufacturer and supplier of all your stone benchtop needs, domestic and commercial.</p>
+      <div class="social">
+        <a href="https://web.facebook.com/pg/mjgstonegc/" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1v2.4H7.6V14h2.8v8h3.1z"/></svg></a>
+        <a href="https://www.instagram.com/p/B3GWCyxpQXb/" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7.2a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6zm0 7.9a3.1 3.1 0 1 1 0-6.2 3.1 3.1 0 0 1 0 6.2zM17 5.9a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2zM21.5 8c-.1-1.5-.4-2.9-1.5-4S17.5 2.6 16 2.5C14.4 2.4 9.6 2.4 8 2.5 6.5 2.6 5.1 2.9 4 4S2.6 6.5 2.5 8c-.1 1.6-.1 6.4 0 8 .1 1.5.4 2.9 1.5 4s2.5 1.4 4 1.5c1.6.1 6.4.1 8 0 1.5-.1 2.9-.4 4-1.5s1.4-2.5 1.5-4c.1-1.6.1-6.4 0-8zm-2 9.7a3.2 3.2 0 0 1-1.8 1.8c-1.2.5-4.2.4-5.7.4s-4.5.1-5.7-.4a3.2 3.2 0 0 1-1.8-1.8c-.5-1.2-.4-4.2-.4-5.7s-.1-4.5.4-5.7A3.2 3.2 0 0 1 6.3 4.5c1.2-.5 4.2-.4 5.7-.4s4.5-.1 5.7.4a3.2 3.2 0 0 1 1.8 1.8c.5 1.2.4 4.2.4 5.7s.1 4.5-.4 5.7z"/></svg></a>
+      </div>
+    </div>
+    <div class="fcol"><h4>Information</h4><ul><li><a href="#about">About us</a></li><li><a href="https://www.mjgstone.com.au/terms-and-conditions/">Terms &amp; conditions</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    <div class="fcol"><h4>Stone products</h4><ul><li><a href="#materials">Quartz &amp; natural stone benchtops</a></li><li><a href="#spaces">Kitchens</a></li><li><a href="#spaces">Bathrooms</a></li></ul></div>
+    <div class="fcol"><h4>Showroom</h4><ul><li>1 Anne St, Southport QLD 4215</li><li>+61 7 5503 1288</li><li>sales@mjgstone.com.au</li></ul></div>
+  </div>
+  <div class="legal"><div class="wrap"><span>© 2026 MJG Stone. All rights reserved.</span><a href="#top">Back to top ↑</a></div></div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  // cursor light
+  if(matchMedia('(pointer:fine)').matches){
+    addEventListener('pointermove',function(e){root.style.setProperty('--mx',e.clientX+'px');root.style.setProperty('--my',e.clientY+'px');},{passive:true});
+  }
+  // mobile menu
+  var nav=document.querySelector('.nav'),burger=document.getElementById('burger');
+  burger.addEventListener('click',function(){var o=nav.classList.toggle('open');burger.setAttribute('aria-expanded',o);});
+  document.querySelectorAll('.menu a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');burger.setAttribute('aria-expanded','false');});});
+  // reveal
+  if('IntersectionObserver' in window){
+    root.classList.add('js');
+    setTimeout(function(){document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in');});},2500);
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.rv').forEach(function(el){
+      var r=el.getBoundingClientRect(); if(r.top<innerHeight){el.classList.add('in');} else io.observe(el);
+    });
+  }
+  // quote form (front-end only; wire to your mail handler or WordPress form endpoint)
+  var form=document.getElementById('quote-form'),toast=document.getElementById('toast');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=form.name.value.trim(),email=form.email.value.trim();
+    if(!name||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){toast.textContent='Please add your name and a valid email so we can reply.';toast.classList.add('show');return;}
+    toast.textContent='Thanks '+name+'. Your request is ready to send to sales@mjgstone.com.au once the form is connected to your mail handler.';
+    toast.classList.add('show');
+  });
+})();
+</script>
+</body>
+</html>
