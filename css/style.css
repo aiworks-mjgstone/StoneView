@@ -342,6 +342,8 @@ main>.sec:first-child{padding-top:calc(var(--nav-h) + 70px)}
 /* home page gets a larger logo */
 body.home{--logo:clamp(96px,14vh,150px);--nav-h:calc(var(--logo) + 2*var(--nav-pad))}
 @media(max-width:760px){:root{--logo:64px;--nav-pad:12px}body.home{--logo:80px}main>.sec:first-child{padding-top:calc(var(--nav-h) + 40px)}.page-hero .wrap{padding-top:calc(var(--nav-h) + 50px)}}
+/* terms page */
+.terms .card{max-width:720px}
 /* contact page map */
 .map{position:relative;aspect-ratio:4/3;border:1px solid var(--line);background:var(--ink-2)}
 .map::before{content:"";position:absolute;top:-1px;left:-1px;width:60px;height:60px;border-top:1px solid var(--gold);border-left:1px solid var(--gold);pointer-events:none;z-index:1}
@@ -355,6 +357,11 @@ body.home{--logo:clamp(96px,14vh,150px);--nav-h:calc(var(--logo) + 2*var(--nav-p
 .field input[type=file]:hover::file-selector-button{background:var(--gold);color:var(--ink)}
 .file-note{font-size:.8rem;color:var(--muted)}
 .file-note.bad{color:#f0a48a}
+/* developer credit beside the copyright line */
+.legal .dev{white-space:nowrap;margin-left:10px;font-size:.66rem;opacity:.45;transition:opacity .25s}
+.legal .dev:hover,.legal .dev:focus-within{opacity:.9}
+.legal .dev a{color:inherit}
+.legal .dev a:hover{text-decoration:underline}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .rv{transform:none;opacity:1}

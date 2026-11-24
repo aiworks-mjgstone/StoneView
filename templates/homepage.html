@@ -289,6 +289,11 @@ main>.sec:first-child{padding-top:calc(var(--nav-h) + 70px)}
 .field input[type=file]:hover::file-selector-button{background:var(--gold);color:var(--ink)}
 .file-note{font-size:.8rem;color:var(--muted)}
 .file-note.bad{color:#f0a48a}
+/* developer credit beside the copyright line */
+.legal .dev{white-space:nowrap;margin-left:10px;font-size:.66rem;opacity:.45;transition:opacity .25s}
+.legal .dev:hover,.legal .dev:focus-within{opacity:.9}
+.legal .dev a{color:inherit}
+.legal .dev a:hover{text-decoration:underline}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .rv{transform:none;opacity:1}
@@ -458,7 +463,7 @@ main>.sec:first-child{padding-top:calc(var(--nav-h) + 70px)}
   <div class="wrap">
     <p class="eyebrow" style="justify-content:center">Recent projects</p>
     <h2 id="cta-title">A modern masterpiece for you to <strong>enjoy for years to come.</strong></h2>
-    <a class="btn solid" href="https://www.mjgstone.com.au/gallery/projects/">View more projects</a>
+    <a class="btn solid" href="#spaces">View more projects</a>
   </div>
 </section>
 
@@ -516,11 +521,11 @@ main>.sec:first-child{padding-top:calc(var(--nav-h) + 70px)}
         <a href="https://www.instagram.com/p/B3GWCyxpQXb/" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7.2a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6zm0 7.9a3.1 3.1 0 1 1 0-6.2 3.1 3.1 0 0 1 0 6.2zM17 5.9a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2zM21.5 8c-.1-1.5-.4-2.9-1.5-4S17.5 2.6 16 2.5C14.4 2.4 9.6 2.4 8 2.5 6.5 2.6 5.1 2.9 4 4S2.6 6.5 2.5 8c-.1 1.6-.1 6.4 0 8 .1 1.5.4 2.9 1.5 4s2.5 1.4 4 1.5c1.6.1 6.4.1 8 0 1.5-.1 2.9-.4 4-1.5s1.4-2.5 1.5-4c.1-1.6.1-6.4 0-8zm-2 9.7a3.2 3.2 0 0 1-1.8 1.8c-1.2.5-4.2.4-5.7.4s-4.5.1-5.7-.4a3.2 3.2 0 0 1-1.8-1.8c-.5-1.2-.4-4.2-.4-5.7s-.1-4.5.4-5.7A3.2 3.2 0 0 1 6.3 4.5c1.2-.5 4.2-.4 5.7-.4s4.5-.1 5.7.4a3.2 3.2 0 0 1 1.8 1.8c.5 1.2.4 4.2.4 5.7s.1 4.5-.4 5.7z"/></svg></a>
       </div>
     </div>
-    <div class="fcol"><h4>Information</h4><ul><li><a href="#about">About us</a></li><li><a href="https://www.mjgstone.com.au/terms-and-conditions/">Terms &amp; conditions</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    <div class="fcol"><h4>Information</h4><ul><li><a href="#about">About us</a></li><li><a href="terms.html">Terms &amp; conditions</a></li><li><a href="#contact">Contact</a></li></ul></div>
     <div class="fcol"><h4>Stone products</h4><ul><li><a href="#materials">Quartz &amp; natural stone benchtops</a></li><li><a href="#spaces">Kitchens</a></li><li><a href="#spaces">Bathrooms</a></li></ul></div>
     <div class="fcol"><h4>Showroom</h4><ul><li>1 Anne St, Southport QLD 4215</li><li>+61 7 5503 1288</li><li>sales@mjgstone.com.au</li></ul></div>
   </div>
-  <div class="legal"><div class="wrap"><span>© 2026 MJG Stone. All rights reserved.</span><a href="#top">Back to top ↑</a></div></div>
+  <div class="legal"><div class="wrap"><span>© 2026 MJG Stone. All rights reserved. | <span class="dev">Website by <a href="https://techmaverik.github.io/akhilpjacob/" target="_blank" rel="noopener">Akhil P Jacob</a></span></span><a href="#top">Back to top ↑</a></div></div>
 </footer>
 
 <script>
