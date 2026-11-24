@@ -337,6 +337,7 @@ main>.sec:first-child{padding-top:calc(var(--nav-h) + 70px)}
 .hero .wrap{padding-top:calc(var(--nav-h) + 24px)}
 .page-hero .wrap{padding-top:calc(var(--nav-h) + 80px)}
 @media(max-width:1560px){.nav .menu{gap:18px}.nav .menu a{letter-spacing:.12em;font-size:.7rem}}
+@media(max-width:1400px){.nav .menu{gap:13px}.nav .menu a{letter-spacing:.1em}.nav .wrap{gap:14px}.nav .wrap>.btn{margin-left:4px}}
 @media(max-width:1240px){.nav .burger{margin-left:auto}.nav nav{margin-left:0}.nav .menu{gap:18px}}
 /* home page gets a larger logo */
 body.home{--logo:clamp(96px,14vh,150px);--nav-h:calc(var(--logo) + 2*var(--nav-pad))}
