@@ -366,3 +366,28 @@ body.home{--logo:clamp(96px,14vh,150px);--nav-h:calc(var(--logo) + 2*var(--nav-p
   *,*::before,*::after{animation:none!important;transition:none!important}
   .rv{transform:none;opacity:1}
 }
+
+/* ---------- Mobile touch targets & legibility ---------- */
+.field select{-webkit-appearance:none;appearance:none;border-radius:0;min-height:50px;padding-right:44px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23eac383' stroke-width='1.4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;background-size:12px 8px}
+@media(max-width:1240px){
+  .nav.open .menu{background:#0a0a0b;gap:2px;max-height:calc(100vh - var(--nav-h,100px));overflow-y:auto}
+  .nav.open .menu a{display:block;padding-block:13px;font-size:.8rem}
+}
+@media(max-width:760px){
+  .field input,.field select,.field textarea{font-size:16px}
+  .eyebrow{font-size:.75rem;letter-spacing:.2em}
+  .field label,.dl dt,.fcol h4,.mat .idx,.stat span,.about-media .tag,.hero-side,.legal .wrap,.legal .dev,.btn{font-size:.75rem}
+  .field label,.dl dt,.fcol h4,.stat span,.about-media .tag{letter-spacing:.16em}
+  .field input[type=file]::file-selector-button{font-size:.75rem;padding:12px 16px}
+  .fcol ul{gap:0}
+  .fcol ul li{padding-block:6px}
+  .fcol ul a{display:block;padding-block:12px;margin-block:-6px}
+  .dl{align-items:baseline}
+  .dl dd a{display:inline-block;padding-block:11px}
+  .legal .wrap{align-items:center}
+  .legal a{display:inline-block;padding-block:13px}
+  .about-media::before{inset:-10px 10px 10px -10px}
+  .marquee .track{font-size:.75rem}
+  .brand .word small{font-size:.75rem;letter-spacing:.14em}
+  .signin-row a,.form-note a{display:inline-block;padding-block:12px}
+}

@@ -298,27 +298,52 @@ main>.sec:first-child{padding-top:calc(var(--nav-h) + 70px)}
   *,*::before,*::after{animation:none!important;transition:none!important}
   .rv{transform:none;opacity:1}
 }
+
+/* ---------- Mobile touch targets & legibility ---------- */
+.field select{-webkit-appearance:none;appearance:none;border-radius:0;min-height:50px;padding-right:44px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23eac383' stroke-width='1.4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;background-size:12px 8px}
+@media(max-width:1240px){
+  .nav.open .menu{background:#0a0a0b;gap:2px;max-height:calc(100vh - var(--nav-h,100px));overflow-y:auto}
+  .nav.open .menu a{display:block;padding-block:13px;font-size:.8rem}
+}
+@media(max-width:760px){
+  .field input,.field select,.field textarea{font-size:16px}
+  .eyebrow{font-size:.75rem;letter-spacing:.2em}
+  .field label,.dl dt,.fcol h4,.mat .idx,.stat span,.about-media .tag,.hero-side,.legal .wrap,.legal .dev,.btn{font-size:.75rem}
+  .field label,.dl dt,.fcol h4,.stat span,.about-media .tag{letter-spacing:.16em}
+  .field input[type=file]::file-selector-button{font-size:.75rem;padding:12px 16px}
+  .fcol ul{gap:0}
+  .fcol ul li{padding-block:6px}
+  .fcol ul a{display:block;padding-block:12px;margin-block:-6px}
+  .dl{align-items:baseline}
+  .dl dd a{display:inline-block;padding-block:11px}
+  .legal .wrap{align-items:center}
+  .legal a{display:inline-block;padding-block:13px}
+  .about-media::before{inset:-10px 10px 10px -10px}
+  .marquee .track{font-size:.75rem}
+  .brand .word small{font-size:.75rem;letter-spacing:.14em}
+  .signin-row a,.form-note a{display:inline-block;padding-block:12px}
+}
 </style>
 </head>
-<body>
+<body id="top">
 <div class="grid-bg" aria-hidden="true"></div>
 <div class="cursor-light" aria-hidden="true"></div>
 
-<header class="nav" id="top">
+<header class="nav">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="MJG Stone home">
-      <img src="assets/logo.png" alt="" width="58" height="58">
+      <img src="assets/logo-light.png" alt="" width="58" height="58">
       <span class="word">MJG Stone<small>Superior Stone, Gold Coast</small></span>
     </a>
     <nav aria-label="Primary">
-      <ul class="menu">
+      <ul class="menu" id="menu">
         <li><a href="#top" aria-current="page">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#materials">Materials</a></li>
         <li><a href="#spaces">Kitchens &amp; Bathrooms</a></li>
-        <li><a href="#sustainability">Sustainability</a></li>
         <li><a href="#contact">Contact</a></li>
         <li class="menu-cta"><a href="signin.html">Sign in</a></li>
+        <li class="menu-cta"><a href="#contact">Request a quote</a></li>
       </ul>
     </nav>
     <a class="btn" href="signin.html">Sign in</a>
@@ -427,22 +452,6 @@ main>.sec:first-child{padding-top:calc(var(--nav-h) + 70px)}
   </div>
 </section>
 
-<section class="sec sustain" id="sustainability" aria-labelledby="sus-title">
-  <div class="wrap">
-    <div class="sec-head rv" style="margin-bottom:0">
-      <p class="eyebrow">Sustainable by design</p>
-      <h2 id="sus-title">Protecting the planet and the <strong>resources we have left.</strong></h2>
-      <p>MJG Stone is committed to finding sustainable ways to operate. From waste reduction to water conservation, we demonstrate this in our company ethos in an ongoing effort to operate and grow sustainably. We care about our team, our customers and our environment.</p>
-    </div>
-    <div class="sus-grid rv">
-      <div class="sus"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/><path d="M9 14a3 3 0 0 0 3 3"/></svg></div><h3>Complete water recycling</h3><p>All works are carried out wet to minimise dust, and every litre is captured and reused.</p></div>
-      <div class="sus"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 12h16M12 4v16"/><circle cx="12" cy="12" r="8"/></svg></div><h3>Silicosis compliant</h3><p>Our operations meet Silicosis compliance standards to protect the team on every cut.</p></div>
-      <div class="sus"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg></div><h3>Solar powered</h3><p>Large solar power systems reduce the carbon footprint of the factory floor.</p></div>
-      <div class="sus"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 12c3-6 9-8 18-8-1 9-4 15-12 15a7 7 0 0 1-6-7z"/><path d="M3 21c4-5 8-8 12-10"/></svg></div><h3>Emission free factory</h3><p>Environmentally friendly production, free of atmospheric emissions.</p></div>
-    </div>
-  </div>
-</section>
-
 <section class="sec process" aria-labelledby="proc-title">
   <div class="wrap">
     <div class="sec-head rv">
@@ -479,7 +488,6 @@ main>.sec:first-child{padding-top:calc(var(--nav-h) + 70px)}
         <dl class="dl">
           <dt>Address</dt><dd>1 Anne St<small>Southport QLD 4215 (Cnr Anne St)</small></dd>
           <dt>Phone</dt><dd><a href="tel:+61755031288">+61 7 5503 1288</a></dd>
-          <dt>Fax</dt><dd>+61 7 5503 1366</dd>
           <dt>Email</dt><dd><a href="mailto:sales@mjgstone.com.au">sales@mjgstone.com.au</a></dd>
         </dl>
       </div>
@@ -514,7 +522,7 @@ main>.sec:first-child{padding-top:calc(var(--nav-h) + 70px)}
 <footer>
   <div class="wrap">
     <div class="fcol">
-      <a class="brand" href="#top"><img src="assets/logo.png" alt="MJG Stone" width="58" height="58"><span class="word">MJG Stone<small>Superior Stone, Gold Coast</small></span></a>
+      <a class="brand" href="#top"><img src="assets/logo-light.png" alt="MJG Stone" width="58" height="58"><span class="word">MJG Stone<small>Superior Stone, Gold Coast</small></span></a>
       <p style="margin-top:20px">Complete manufacturer and supplier of all your stone benchtop needs, domestic and commercial.</p>
       <div class="social">
         <a href="https://web.facebook.com/pg/mjgstonegc/" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1v2.4H7.6V14h2.8v8h3.1z"/></svg></a>
