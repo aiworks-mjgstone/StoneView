@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Sign in | MJG Stone</title>
-<link rel="icon" type="image/png" href="../assets/favicon.png">
-<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-<meta name="description" content="Sign in to your MJG Stone client account.">
+<title>Contact | MJG Stone</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="description" content="Visit the MJG Stone showroom at 1 Anne St, Southport QLD 4215, or call +61 7 5503 1288.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap">
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div class="grid-bg" aria-hidden="true"></div>
@@ -18,20 +18,20 @@
 
 <header class="nav" id="top">
   <div class="wrap">
-    <a class="brand" href="index.html" aria-label="MJG Stone home">
-      <img src="../assets/logo.png" alt="" width="58" height="58">
+    <a class="brand" href="homepage.html" aria-label="MJG Stone home">
+      <img src="assets/logo.png" alt="" width="58" height="58">
       <span class="word">MJG Stone<small>Superior Stone, Gold Coast</small></span>
     </a>
     <nav aria-label="Primary">
       <ul class="menu" id="menu">
-        <li><a href="index.html">Home</a></li>
+        <li><a href="homepage.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="how-we-work.html">How we work</a></li>
         <li><a href="materials.html">Materials</a></li>
         <li><a href="kitchens-bathrooms.html">Kitchens &amp; Bathrooms</a></li>
         <li><a href="sustainability.html">Sustainability</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li class="menu-cta"><a href="signin.html" aria-current="page">Sign in</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+        <li class="menu-cta"><a href="signin.html">Sign in</a></li>
         <li class="menu-cta"><a href="quote.html">Request a quote</a></li>
       </ul>
     </nav>
@@ -42,29 +42,30 @@
 </header>
 
 <main>
-<section class="sec signin" aria-labelledby="signin-title">
+<section class="sec contact" aria-labelledby="contact-title">
   <div class="wrap">
-    <div class="card rv">
-      <p class="eyebrow">Client area</p>
-      <h1 id="signin-title">Sign in to your <strong>MJG Stone account.</strong></h1>
-      <p>Check on your quote, your template booking and your install date.</p>
-      <form id="signin-form" novalidate>
-        <div class="field">
-          <label for="si-email">Email</label>
-          <input id="si-email" name="email" type="email" autocomplete="username" required>
-        </div>
-        <div class="field">
-          <label for="si-password">Password</label>
-          <input id="si-password" name="password" type="password" autocomplete="current-password" required>
-        </div>
-        <div class="signin-row">
-          <label class="check"><input type="checkbox" name="remember"> Keep me signed in</label>
-          <a href="contact.html">Forgot password?</a>
-        </div>
-        <button class="btn solid" type="submit">Sign in</button>
-        <div class="toast" id="signin-toast" role="status" aria-live="polite"></div>
-      </form>
-      <p class="form-note">New to MJG Stone? <a href="quote.html">Request a quote</a> and we'll set you up.</p>
+    <div class="contact-side rv">
+      <div class="sec-head flush">
+        <p class="eyebrow">QLD office &amp; showroom</p>
+        <h1 id="contact-title">Visit us in <strong>Southport.</strong></h1>
+        <p>Bring your plans, pick a slab and leave with a quote. Or send us the details and we will come back to you.</p>
+      </div>
+      <div class="card">
+        <dl class="dl">
+          <dt>Address</dt><dd>1 Anne St<small>Southport QLD 4215 (Cnr Anne St)</small></dd>
+          <dt>Phone</dt><dd><a href="tel:+61755031288">+61 7 5503 1288</a></dd>
+          <dt>Email</dt><dd><a href="mailto:sales@mjgstone.com.au">sales@mjgstone.com.au</a></dd>
+        </dl>
+        <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=MJG+Stone,+1+Anne+St,+Southport+QLD+4215,+Australia" target="_blank" rel="noopener">Get directions</a>
+      </div>
+      <div class="card">
+        <h2>Have a project <strong>in mind?</strong></h2>
+        <p>Send us the details and we will reply within one business day.</p>
+        <a class="btn solid" href="quote.html">Request a quote</a>
+      </div>
+    </div>
+    <div class="map fill rv">
+      <iframe title="Map showing MJG Stone at 1 Anne St, Southport QLD 4215" src="https://www.google.com/maps?q=MJG+Stone,+1+Anne+St,+Southport+QLD+4215,+Australia&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
     </div>
   </div>
 </section>
@@ -73,7 +74,7 @@
 <footer>
   <div class="wrap">
     <div class="fcol">
-      <a class="brand" href="index.html"><img src="../assets/logo.png" alt="MJG Stone" width="58" height="58"><span class="word">MJG Stone<small>Superior Stone, Gold Coast</small></span></a>
+      <a class="brand" href="homepage.html"><img src="assets/logo.png" alt="MJG Stone" width="58" height="58"><span class="word">MJG Stone<small>Superior Stone, Gold Coast</small></span></a>
       <p>Complete manufacturer and supplier of all your stone benchtop needs, domestic and commercial.</p>
       <div class="social">
         <a href="https://web.facebook.com/pg/mjgstonegc/" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1v2.4H7.6V14h2.8v8h3.1z"/></svg></a>
